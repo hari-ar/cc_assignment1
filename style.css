@@ -1,0 +1,48 @@
+	* {
+    box-sizing: border-box;
+	}
+.headerColor
+{
+  color:#feb33d;
+}
+.footer
+{
+  background-color: #767676;
+  color:white;
+ height:8%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111111;
+	border-bottom: black 1px solid;
+}
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #e7e7e7;
+}
+
+.active {
+    background-color: #767676;
+}
+
+.listHeader
+{
+	background-color: #e7e7e7;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
