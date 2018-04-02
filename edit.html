@@ -16,6 +16,7 @@
 				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information"> Home</a></li>
 				<li> <a  href="/add" title="Add New GPU">Add New GPU Information </a></li>
 				<li> <a  href="/search" title="Search for GPUs">Search for GPUs</a></li>
+                <li> <a  href="/file" title="CSV File Upload(Beta)">CSV File Upload(Beta)</a></li>
 				<li>
                 {% if user %}
                     <a href='{{ login_logout_url }}'>Logout</a>
@@ -43,7 +44,10 @@
                         <tbody>
 						<tr>
         					<td >Name of the GPU</td>
-        					<td ><input type="hidden" value="{{ gpu_name }}" name="gpu_name"/>{{ gpu_name }}</td>
+        					<td >
+                                <input form="input_data_form" type="hidden" value="{{ gpu_name }}" name="gpu_id"/>
+                                {{ gpu_name }}
+                            </td>
         				  </tr>
         				  <tr>
         					<td >geometryShader</td>

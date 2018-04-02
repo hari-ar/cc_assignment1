@@ -24,7 +24,8 @@ class Display(webapp2.RequestHandler):
                 main_header = 'GPU Information'
                 login_logout = 'Logout'
                 login_logout_url = users.create_logout_url(self.request.uri)
-                gpu_key = ndb.Key('GPUModel', 'wee')
+                gpu_name = self.request.get('gpu_id')
+                gpu_key = ndb.Key('GPUModel', gpu_name)
                 gpu_data = gpu_key.get()
 
 

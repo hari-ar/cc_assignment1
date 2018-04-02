@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Assignment 1 GPU</title>
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+ </head>
+  <body>
+  <div id="container">
+     <header>
+       <div class="row">
+			<ul>
+				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information"> Home</a></li>
+				<li> <a  href="/add" title="Add New GPU">Add New GPU Information </a></li>
+				<li> <a  href="/search" title="Search for GPUs">Search for GPUs</a></li>
+                <li> <a  href="/file" class="active" title="CSV File Upload(Beta)">CSV File Upload(Beta)</a></li>
+				<li>
+                {% if user %}
+                    <a href='{{ login_logout_url }}'>Logout</a>
+                {% else %}
+                    <a href='{{ login_logout_url }}'>Login</a>
+                {% endif %}
+                </li>
+			</ul>
+	   </div>
+	 </header>
+  <section>
+	  {% if user %}
+        <h4 class="listHeader headerColor">{{ main_header }}</h4>
+        <div class="row">
+			<div class="col-md-11" style="margin-left: 5%;">
+                <table id="edit_table" class="table table-hover table-bordered">
+                    <tr>
+                        <td>Please select the file (Please use comma separated csv file, with no comma in gpu name, t or True representing features present)
+                            <form action="{{ upload_url }}" method="post" enctype="multipart/form-data">
+                                <input style="align-self: center" type="file" name="file" /><input class="btn btn-primary" align="center" type="submit"/>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+			</div>
+        </div>
+      {% else %}
+        <h4 class="listHeader">Please Login to Access This Page..!!</h4>
+      {% endif %}
+
+ </section>
+     <!-- <footer class="footer"> -->
+		<!-- <div class="col-12" style="height:30px;"> -->
+			 <!-- <p style="text-align:center;">Assignment</p>  -->
+            <!-- </div> -->
+    <!-- </footer> -->
+   </div>
+ <script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+  </body>
+
+
+  </html>

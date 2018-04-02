@@ -16,6 +16,7 @@
 				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information" class="active"> Home</a></li>
 				<li> <a  href="/add" title="Edit">Add New GPU Information </a></li>
 				<li> <a  href="/search" title="Search">Search for GPUs</a></li>
+                <li> <a  href="/file" title="CSV File Upload(Beta)">CSV File Upload(Beta)</a></li>
 				<li>
                 {% if user %}
                     <a href='{{ login_logout_url }}'>Logout</a>
@@ -59,7 +60,12 @@
                                 <td align="center">{{ gpu.sparseBinding }}</td>
                                 <td align="center">{{ gpu.textureCompressionETC2 }}</td>
                                 <td align="center">{{ gpu.vertexPipelineStoresAndAtomics }}</td>
-                                <td align="center"><form action="/edit" method="post"><input type="hidden" name="gpu_id" value="{{ gpu.key.id() }}"/><input align="center" class="btn btn-primary btn-sm"  type="submit" value="Edit Values" name="button"/></form></td>
+                                <td align="center">
+                                    <form action="/edit" method="post">
+                                        <input type="hidden" name="gpu_id" value="{{ gpu.key.id() }}"/>
+                                        <input align="center" class="btn btn-primary btn-sm"  type="submit" value="Edit Values" name="button"/>
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
