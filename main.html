@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
    <meta charset="utf-8">
@@ -14,7 +14,7 @@
        <div class="row">
 			<ul>
 				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information" class="active"> Home</a></li>
-				<li> <a  href="/add" title="Edit">Edit GPU Information </a></li>
+				<li> <a  href="/add" title="Edit">Add New GPU Information </a></li>
 				<li> <a  href="/search" title="Search">Search for GPUs</a></li>
 				<li>
                 {% if user %}
@@ -27,12 +27,47 @@
 	   </div>
 	 </header>
   <section>
-	  <h4 class="listHeader">{{ main_header }}</h4>
+	  <h4 class="listHeader headerColor">{{ main_header }}</h4>
+
 	   <div class="row">
 			<div class="col-md-11" style="margin-left: 5%;">
-
+                {% if gpu_list %}
+                    <table id="table" class="table table-hover table-bordered">
+                    <thead>
+				        <tr>
+					        <th style="text-align: center">GPU Name</th>
+                            <th style="text-align: center">geometryShader</th>
+                            <th style="text-align: center">tesselationShader</th>
+                            <th style="text-align: center">shaderInt16</th>
+                            <th style="text-align: center">sparseBinding</th>
+                            <th style="text-align: center">textureCompressionETC2</th>
+                            <th style="text-align: center">vertexPipelineStoresAndAtomics</th>
+                            <th align="center"></th>
+				        </tr>
+				    </thead>
+                    <tbody>
+                        {% for gpu in gpu_list %}
+                            <tr>
+                                <td align="center">
+                                    <form id="display" method="post" action="/display"></form>
+                                    <a href="javascript:{}" onclick="document.getElementById('display').submit();">{{ gpu.key.id() }}</a>
+                                    <input type="hidden" value="{{ gpu.key.id() }}" name="gpu_id" form="display"/>
+                                </td>
+                                <td align="center">{{ gpu.geometryShader }}</td>
+                                <td align="center">{{ gpu.tesselationShader }}</td>
+                                <td align="center">{{ gpu.shaderInt16 }}</td>
+                                <td align="center">{{ gpu.sparseBinding }}</td>
+                                <td align="center">{{ gpu.textureCompressionETC2 }}</td>
+                                <td align="center">{{ gpu.vertexPipelineStoresAndAtomics }}</td>
+                                <td align="center"><form action="/edit" method="post"><input type="hidden" name="gpu_id" value="{{ gpu.key.id() }}"/><input align="center" class="btn btn-primary btn-sm"  type="submit" value="Edit Values" name="button"/></form></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                        {% else %}
+                        {% endif %}
 			</div>
-		  </div>
+       </div>
 
  </section>
      <!-- <footer class="footer"> -->

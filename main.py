@@ -19,7 +19,10 @@ from google.appengine.api import users
 import jinja2
 import os
 
+from GPUModel import GPUModel
 from add import Add
+from display import Display
+from edit import Edit
 from search import Search
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -32,15 +35,14 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/html'
-        login_logout = ''
-        main_header = ''
-        login_logout_url = ''
         user = users.get_current_user()
+        gpu_list = ''
 
         if user:
             main_header = 'GPU Information'
             login_logout = 'Logout'
             login_logout_url = users.create_logout_url(self.request.uri)
+            gpu_list = GPUModel.query().fetch()
 
         else:
             main_header = 'Please Login to Access This Page..!!'
@@ -51,7 +53,8 @@ class MainHandler(webapp2.RequestHandler):
             'main_header': main_header,
             'login_logout': login_logout,
             'login_logout_url': login_logout_url,
-            'user': user
+            'user': user,
+            'gpu_list': gpu_list
         }
 
         template = JINJA_ENVIRONMENT.get_template('main.html')
@@ -59,7 +62,9 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-        ('/', MainHandler),
-        ('/add', Add),
-        ('/search', Search)
+    ('/', MainHandler),
+    ('/add', Add),
+    ('/search', Search),
+    ('/edit', Edit),
+    ('/display', Display)
 ], debug=True)

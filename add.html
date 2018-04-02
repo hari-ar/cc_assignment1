@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
    <meta charset="utf-8">
@@ -13,8 +13,8 @@
      <header>
        <div class="row">
 			<ul>
-				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information" class="active"> Home</a></li>
-				<li> <a  href="/add" title="Add New GPU">Edit GPU Information </a></li>
+				<li style="margin-left: 2%;"> <a  href="/" title="GPU Information"> Home</a></li>
+				<li> <a  href="/add" title="Add New GPU" class="active">Add New GPU Information </a></li>
 				<li> <a  href="/search" title="Search for GPUs">Search for GPUs</a></li>
 				<li>
                 {% if user %}
@@ -29,46 +29,69 @@
   <section>
 
 	  {% if user %}
-                    <h4 class="listHeader">{{ main_header }}</h4>
+                    <h4 class="listHeader headerColor">{{ main_header }}</h4>
 	   <div class="row">
 			<div class="col-md-11" style="margin-left: 5%;">
-				<form method="post" id="input_data_form" action="/edit">
+				<form method="post" id="input_data_form" action="/add">
+					</form>
                     <table id="edit_table" class="table table-hover table-bordered">
     				    <thead>
         				  <tr>
-							  <th align="center">Graphic Property</th>
+							  <th >Graphic Property</th>
 							  <th >Boolean Property Value</th>
         				  </tr>
                         </thead>
                         <tbody>
-        				  <tr>
-        					<td align="center">geometryShader</td>
-        					<td align="center"><label for="geometryShader"></label><input align="center" type="checkbox" form="input_data_form" name="geometryShader" id="geometryShader"/></td>
+						<tr>
+        					<td >Name of the GPU</td>
+        					<td >
+							<div class="row">
+								<div class="col-md-4">
+									<label for="gpuname" ></label>
+									
+								</div>
+								<div class="col-md-4">
+									<input align="center" type="text" class="form-control"form="input_data_form" name="gpuname" id="gpuname" placeholder="Unique GPU Name" required/>
+								</div>	
+								
+							</div>
+								<p style="color: red">{{ error_message }}</p>
+                               
+                            </td>
         				  </tr>
         				  <tr>
-        					<td align="center">tesselationShader</td>
-        					<td align="center"><label for="tesselationShader"></label><input type="checkbox" form="input_data_form" name="tesselationShader" id="tesselationShader"/></td>
+        					<td >geometryShader</td>
+
+        					<td ><label for="geometryShader"></label><input  type="checkbox" form="input_data_form" name="geometryShader" id="geometryShader"/></td>
         				  </tr>
         				  <tr>
-        					<td align="center">shaderInt16</td>
-        					<td align="center"><label for="shaderInt16"></label><input type="checkbox" form="input_data_form" name="shaderInt16" id="shaderInt16"/></td>
+        					<td >tesselationShader</td>
+        					<td ><label for="tesselationShader"></label><input type="checkbox" form="input_data_form" name="tesselationShader" id="tesselationShader"/></td>
+        				  </tr>
+        				  <tr>
+        					<td >shaderInt16</td>
+        					<td ><label for="shaderInt16"></label><input type="checkbox" form="input_data_form" name="shaderInt16" id="shaderInt16"/></td>
         				  </tr>
                           <tr>
-        					<td align="center">sparseBinding</td>
-        					<td align="center"><label for="sparseBinding"></label><input type="checkbox" form="input_data_form" name="sparseBinding" id="sparseBinding"/></td>
+        					<td >sparseBinding</td>
+        					<td ><label for="sparseBinding"></label><input type="checkbox" form="input_data_form" name="sparseBinding" id="sparseBinding"/></td>
         				  </tr>
                           <tr>
-        					<td align="center">textureCompressionETC2</td>
-        					<td align="center"><label for="textureCompressionETC2"></label><input type="checkbox" form="input_data_form" name="textureCompressionETC2" id="textureCompressionETC2"/></td>
+        					<td >textureCompressionETC2</td>
+        					<td ><label for="textureCompressionETC2"></label><input type="checkbox" form="input_data_form" name="textureCompressionETC2" id="textureCompressionETC2"/></td>
         				  </tr>
                           <tr>
-        					<td align="center">vertexPipelineStoresAndAtomics</td>
-        					<td align="center"><label for="vertexPipelineStoresAndAtomics"></label><input type="checkbox" form="input_data_form" name="vertexPipelineStoresAndAtomics" id="vertexPipelineStoresAndAtomics"/></td>
+        					<td >vertexPipelineStoresAndAtomics</td>
+        					<td ><label for="vertexPipelineStoresAndAtomics"></label><input type="checkbox" form="input_data_form" name="vertexPipelineStoresAndAtomics" id="vertexPipelineStoresAndAtomics"/></td>
         				  </tr>
     				    </tbody>
 			        </table>
-                    <input align="center" type="submit" value="Add" name="button"/>
-                </form>
+                    <div class="row">
+						<div class="col-md-2 col-md-offset-6">
+							<input  class="btn btn-primary" form="input_data_form" type="submit" value="Add" name="button"/>
+						</div>
+					</div>
+					
 			</div>
 		  </div>
                 {% else %}
